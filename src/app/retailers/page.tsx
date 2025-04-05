@@ -42,14 +42,14 @@ const products: Product[] = [
     {
       id: "premium-repurpose-notebook",
       name: "Premium Repurpose Notebook",
-      price: 1999,
+      price: 50,
       description: "Luxury recycled paper notebook with leather cover, large size",
       image: "https://images.unsplash.com/photo-1629196916199-60a8521c6f72?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300&q=80",
     },
     {
       id: "slim-repurpose-notebook",
       name: "Slim Repurpose Notebook",
-      price: 1599,
+      price: 25,
       description: "Compact luxury notebook with recycled paper, small size",
       image: "https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300&q=80",
     },
@@ -76,7 +76,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined)
 
 function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([])
-  const deliveryFee = 499
+  const deliveryFee = 49
 
   // Load cart from localStorage on client side
   useEffect(() => {
