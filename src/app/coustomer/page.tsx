@@ -1,7 +1,11 @@
+"use client"
+import React from "react"
+
 import { Search, MapPin } from "lucide-react"
 
 import { stores } from "@/data/store"
 import StoreCard from "@/components/coustomer/store-card"
+import { Button } from "@/components/ui/button"
 
 export default function Home() {
   return (
@@ -9,12 +13,12 @@ export default function Home() {
       {/* Header */}
       <header className="bg-emerald-500 text-white p-4 flex justify-between items-center">
         <h1 className="text-xl font-medium">Nearby Retailers — Find & Buy Notebooks Easily</h1>
-        <button
-          onClick={() => window.location.href = '/vcproducts'}
+        <Button
+          onClick={() => window.location.href = '/coustomer/vcproducts'}
           className="bg-white text-emerald-500 px-4 py-2 rounded-md shadow-md hover:bg-gray-100 transition"
         >
           View Products
-        </button>
+        </Button>
         <div className="flex items-center">
           <MapPin className="h-5 w-5 mr-1" />
           <span className="text-sm">Location detected</span>
