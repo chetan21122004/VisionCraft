@@ -76,15 +76,15 @@ export default function Dashboard() {
         <div className="bg-white rounded-lg shadow p-6 mb-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Banasthali Scrap Books</h1>
-              <p className="text-gray-600">Scrap Paper Collection Center</p>
+              <h1 className="text-2xl font-bold text-gray-900">PCU-PCET</h1>
+              <p className="text-gray-600">Mohitewadi talegaon</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 mt-4 md:mt-0">
               <button
                 onClick={() => setIsModalOpen(true)}
                 className="inline-flex items-center justify-center px-4 py-2 bg-emerald-500 text-white rounded-md hover:bg-emerald-600 transition-colors"
               >
-                <span className="mr-2">+</span> Add Scrap Books
+                <span className="mr-2">+</span> Upload Notebooks
               </button>
               <button className="inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
                 <Link className="w-4 h-4 mr-2" /> Connect with VisionCraft

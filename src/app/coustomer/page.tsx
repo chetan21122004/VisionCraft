@@ -7,7 +7,7 @@ import { stores } from "@/data/store"
 import StoreCard from "@/components/coustomer/store-card"
 import { Button } from "@/components/ui/button"
 
-export default function Home() {
+export default function coustomer() {
   return (
     <main className="min-h-screen bg-gray-50">
       {/* Header */}

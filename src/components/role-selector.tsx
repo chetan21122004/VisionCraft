@@ -4,7 +4,7 @@ import type React from "react"
 
 import { Building2, ShoppingBag, User } from "lucide-react"
 
-export type Role = "institution" | "retailer" | "customer"
+export type Role = "college" | "retailers" | "users"
 
 interface RoleSelectorProps {
   selectedRole: Role
@@ -14,18 +14,18 @@ interface RoleSelectorProps {
 export default function RoleSelector({ selectedRole, onRoleChange }: RoleSelectorProps) {
   const roles: { id: Role; label: string; icon: React.ReactNode }[] = [
     {
-      id: "institution",
-      label: "Institution",
+      id: "college",
+      label: "College",
       icon: <Building2 className="h-5 w-5" />,
     },
     {
-      id: "retailer",
-      label: "Retailer",
+      id: "retailers",
+      label: "Retailers",
       icon: <ShoppingBag className="h-5 w-5" />,
     },
     {
-      id: "customer",
-      label: "Customer",
+      id: "users",
+      label: "users",
       icon: <User className="h-5 w-5" />,
     },
   ]

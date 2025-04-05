@@ -6,19 +6,54 @@ import { useState } from "react"
 import Link from "next/link"
 import { Mail, Lock } from "lucide-react"
 import RoleSelector, { type Role } from "@/components/role-selector"
+import Image from 'next/image'
 
 export default function LoginPage() {
-  const [selectedRole, setSelectedRole] = useState<Role>("institution")
+  const [selectedRole, setSelectedRole] = useState<Role>("college")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [rememberMe, setRememberMe] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would implement the actual login logic
-    console.log("Login attempt:", { selectedRole, email, password, rememberMe })
-    // You would typically make an API call here
+
+    const loginData = {
+      role: selectedRole,
+      email,
+      password,
+      rememberMe,
+    }
+
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(loginData),
+      })
+      
+      if (response.ok) {
+        const responseData = await response.json()
+        console.log(responseData,selectedRole);
+        localStorage.setItem('AuthData', JSON.stringify(responseData.data))
+
+        if (selectedRole === "college") {
+          window.location.href = "/college";
+        } else if (selectedRole === "users") {
+          window.location.href = "/customer";
+        } else {
+          window.location.href = "/retailers";
+        }
+      } else {
+        const errorData = await response.json()
+        throw new Error(errorData.error || "Login failed")
+      }
+    } catch (error) {
+      alert(`Error: ${error instanceof Error ? error.message : 'Unknown error'}`)
+    }
   }
+
+  // Add a fallback/placeholder image
+  const fallbackImageUrl = '/placeholder.jpg' // Store this in your public folder
 
   return (
     <>
@@ -102,6 +137,18 @@ export default function LoginPage() {
           Login
         </button>
       </form>
+
+      {/* Use error handling on the Image component */}
+      <Image
+        src="/path/to/your/image.jpg"
+        alt="Description"
+        width={400}
+        height={300}
+        onError={(e) => {
+          // @ts-ignore
+          e.target.src = fallbackImageUrl
+        }}
+      />
     </>
   )
 }

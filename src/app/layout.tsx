@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/components/cart-context";
 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -25,10 +26,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-     <body>
-        <CartProvider>
-          {children} {/* Now all children can use useCart() */}
-        </CartProvider>
+      <body>
+          <CartProvider>
+            {children} {/* Now all children can use useCart() */}
+          </CartProvider>
+
       </body>
     </html>
   );
