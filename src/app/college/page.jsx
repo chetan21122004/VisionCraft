@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Bell, Link, CheckCircle, Clock, Truck, FileText } from "lucide-react"
 import { UploadNotebookModal } from "@/components/college/upload-notebook-modal"
+
 export default function Dashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -163,12 +164,13 @@ export default function Dashboard() {
                     </div>
                     <div className="mt-2 md:mt-0">
                       <span
-                        className={`inline-flex px-3 py-1 text-xs font-medium rounded-full ${order.status === "Pending"
+                        className={`inline-flex px-3 py-1 text-xs font-medium rounded-full ${
+                          order.status === "Pending"
                             ? "bg-yellow-100 text-yellow-800"
                             : order.status === "Picked Up"
                               ? "bg-blue-100 text-blue-800"
                               : "bg-green-100 text-green-800"
-                          }`}
+                        }`}
                       >
                         {order.status}
                       </span>
