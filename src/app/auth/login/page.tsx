@@ -6,13 +6,19 @@ import { useState } from "react"
 import Link from "next/link"
 import { Mail, Lock } from "lucide-react"
 import RoleSelector, { type Role } from "@/components/role-selector"
-import Image from 'next/image'
+import { redirect } from "next/navigation"
+import { useRouter } from "next/navigation"
+
+
 
 export default function LoginPage() {
   const [selectedRole, setSelectedRole] = useState<Role>("college")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [rememberMe, setRememberMe] = useState(false)
+  const router = useRouter()
+
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -37,11 +43,11 @@ export default function LoginPage() {
         localStorage.setItem('AuthData', JSON.stringify(responseData.data))
 
         if (selectedRole === "college") {
-          window.location.href = "/college";
+          router.push("/college");
         } else if (selectedRole === "users") {
-          window.location.href = "/customer";
+          router.push("/coustomer");
         } else {
-          window.location.href = "/retailers";
+          router.push("/retailers");
         }
       } else {
         const errorData = await response.json()
@@ -51,9 +57,6 @@ export default function LoginPage() {
       alert(`Error: ${error instanceof Error ? error.message : 'Unknown error'}`)
     }
   }
-
-  // Add a fallback/placeholder image
-  const fallbackImageUrl = '/placeholder.jpg' // Store this in your public folder
 
   return (
     <>
@@ -137,18 +140,6 @@ export default function LoginPage() {
           Login
         </button>
       </form>
-
-      {/* Use error handling on the Image component */}
-      <Image
-        src="/path/to/your/image.jpg"
-        alt="Description"
-        width={400}
-        height={300}
-        onError={(e) => {
-          // @ts-ignore
-          e.target.src = fallbackImageUrl
-        }}
-      />
     </>
   )
 }

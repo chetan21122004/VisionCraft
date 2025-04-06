@@ -1,13 +1,14 @@
 "use client"
 
-import { redirect } from "next/navigation"
 import type React from "react"
 import { useState } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { User, Mail, Lock, MapPin, Home, Building, Phone } from "lucide-react"
 import RoleSelector, { type Role } from "@/components/role-selector"
 
 export default function RegisterPage() {
+  const router = useRouter()
   const [selectedRole, setSelectedRole] = useState<Role>("college")
   const [fullName, setFullName] = useState("")
   const [email, setEmail] = useState("")
@@ -35,22 +36,24 @@ export default function RegisterPage() {
       body: JSON.stringify(userData)
     });
 
-    if (response.ok) {
-      const responseData = await response.json(); // Parse the response data
-      localStorage.setItem('AuthData', JSON.stringify(responseData.data)); // Store user data in local storage
+    const responseData = await response.json();
 
-      // Redirect based on the selected role
+    if (response.ok) {
+      // Store the user data in localStorage
+      localStorage.setItem('AuthData', JSON.stringify(responseData.data));
+
+      // Use router.push for client-side navigation
       if (selectedRole === "college") {
-        redirect("/dashboard/college");
+        router.push("/college");
       } else if (selectedRole === "users") {
-        redirect("/customer"); // Corrected spelling from "coustomer" to "customer"
+        router.push("/coustomer");
       } else {
-        redirect("/retailers");
+        router.push("/retailers");
       }
     } else {
-      const errorData = await response.json();
-      throw new Error(errorData.error || "Registration failed");
+      throw new Error(responseData.error || "Registration failed");
     }
+   
 
   } catch (error) {
     alert(`Error: ${error instanceof Error ? error.message : 'Unknown error'}`);

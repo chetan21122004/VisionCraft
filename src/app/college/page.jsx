@@ -1,11 +1,25 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Bell, Link, CheckCircle, Clock, Truck, FileText } from "lucide-react"
 import { UploadNotebookModal } from "@/components/college/upload-notebook-modal"
 
 export default function Dashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [userData, setUserData] = useState(null)
+
+  useEffect(() => {
+    try {
+      const storedData = localStorage.getItem('AuthData')
+      if (storedData) {
+        const parsedData = JSON.parse(storedData)
+        setUserData(parsedData)
+        console.log('User Data:', parsedData)
+      }
+    } catch (error) {
+      console.error('Error fetching user data:', error)
+    }
+  }, [])
 
   const recentOrders = [
     {
@@ -64,6 +78,9 @@ export default function Dashboard() {
             <button className="text-gray-600 hover:text-gray-900">
               <Bell className="w-5 h-5" />
             </button>
+            <span className="text-gray-700 font-medium">
+              {userData?.name || 'Loading...'}
+            </span>
             <div className="w-8 h-8 bg-gray-300 rounded-full overflow-hidden">
               <img src="/placeholder.svg?height=32&width=32" alt="Profile" />
             </div>
@@ -76,8 +93,10 @@ export default function Dashboard() {
         <div className="bg-white rounded-lg shadow p-6 mb-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">PCU-PCET</h1>
-              <p className="text-gray-600">Mohitewadi talegaon</p>
+              <h1 className="text-2xl font-bold text-gray-900">
+                {userData?.name || 'Loading...'}
+              </h1>
+              <p className="text-gray-600">{userData?.address || 'Loading address...'}</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 mt-4 md:mt-0">
               <button
@@ -164,13 +183,12 @@ export default function Dashboard() {
                     </div>
                     <div className="mt-2 md:mt-0">
                       <span
-                        className={`inline-flex px-3 py-1 text-xs font-medium rounded-full ${
-                          order.status === "Pending"
+                        className={`inline-flex px-3 py-1 text-xs font-medium rounded-full ${order.status === "Pending"
                             ? "bg-yellow-100 text-yellow-800"
                             : order.status === "Picked Up"
                               ? "bg-blue-100 text-blue-800"
                               : "bg-green-100 text-green-800"
-                        }`}
+                          }`}
                       >
                         {order.status}
                       </span>

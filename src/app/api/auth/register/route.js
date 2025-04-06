@@ -5,33 +5,51 @@ export async function POST(request) {
   try {
     const { role, fullName, email, password, contact, address } = await request.json()
 
-    // If it's a retailer, include a default shop name
-    if (role === 'retailers') {
-      const result = await pool.query(
-        `INSERT INTO retailers (name, email, password, contact, address, shop_name)
-         VALUES ($1, $2, $3, $4, $5, $6) 
-         RETURNING *`,
-        [fullName, email, password, contact, address, fullName + "'s Shop"] // Using fullName as temporary shop name
-      )
-      return NextResponse.json({ success: true, data: result.rows[0] })
-    }else{
+    // Check for existing user
+    const existingUser = await pool.query(
+      `SELECT email FROM ${role} WHERE email = $1`,
+      [email]
+    )
 
-      
-      // For other roles, continue with existing logic
-      const result = await pool.query(
-        `INSERT INTO ${role} (name, email, password, contact, address)
-        VALUES ($1, $2, $3, $4, $5) 
-        RETURNING *`,
-        [fullName, email, password, contact, address]
+    if (existingUser.rows.length > 0) {
+      return NextResponse.json(
+        { error: 'Email already exists' },
+        { status: 400 }
       )
-      return NextResponse.json({ success: true, data: result.rows[0] })
     }
 
+    // Insert new user
+    const result = await pool.query(
+      `INSERT INTO ${role} (name, email, password, contact, address)
+       VALUES ($1, $2, $3, $4, $5) 
+       RETURNING *`,
+      [fullName, email, password, contact, address]
+    )
+
+    // Remove password from response
+    const { password: _, ...userWithoutPassword } = result.rows[0]
+
+    // Return success response with user data
+    return NextResponse.json({
+      success: true,
+      data: {
+        ...userWithoutPassword,
+        role // Include role in the response
+      }
+    }, { status: 200 })
 
   } catch (error) {
     console.error('Database error:', error)
+    
+    if (error.code === '23505') {
+      return NextResponse.json(
+        { error: 'Email already exists' },
+        { status: 400 }
+      )
+    }
+
     return NextResponse.json(
-      { error: 'Failed to insert data. Please check server logs.' },
+      { error: 'Registration failed. Please try again.' },
       { status: 500 }
     )
   }

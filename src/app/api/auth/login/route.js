@@ -12,7 +12,7 @@ export async function POST(request) {
       [email]
     )
 console.log('====================================');
-console.log("from the server", result.rows[0]);
+console.log("from the server login", result.rows[0]);
 console.log('====================================');
     // Check if user exists
     if (result.rows.length === 0) {

@@ -174,8 +174,8 @@ function ProductCard({ product }: { product: Product }) {
         <Image
           src={product.image || "/placeholder.svg"}
           alt={product.name}
-          width={400}
-          height={300}
+          width={200}
+          height={100}
           className="w-full h-auto object-cover transition-transform hover:scale-105"
         />
       </div>
