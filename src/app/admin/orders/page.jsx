@@ -11,9 +11,7 @@ export default function OrdersPage() {
           <h1 className="text-2xl font-bold">Manage Orders</h1>
           <p className="text-muted-foreground">View and manage orders from customers and retailers</p>
         </div>
-        <Button className="bg-green-500 hover:bg-green-600">
-          <Plus className="mr-2 h-4 w-4" /> New Order
-        </Button>
+      
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">

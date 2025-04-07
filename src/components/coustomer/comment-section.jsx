@@ -1,23 +1,12 @@
 "use client"
 
-import type React from "react"
 
 import { useState, useEffect } from "react"
 import { Send } from "lucide-react"
 
-interface Comment {
-  id: string
-  author: string
-  text: string
-  date: string
-}
 
-interface CommentSectionProps {
-  storeId: string
-}
-
-export default function CommentSection({ storeId }: CommentSectionProps) {
-  const [comments, setComments] = useState<Comment[]>([])
+export default function CommentSection({ storeId }) {
+  const [comments, setComments] = useState([])
   const [newComment, setNewComment] = useState("")
   const [userName, setUserName] = useState("")
 
@@ -46,11 +35,11 @@ export default function CommentSection({ storeId }: CommentSectionProps) {
     }
   }, [userName])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     if (!newComment.trim() || !userName.trim()) return
 
-    const newCommentObj: Comment = {
+    const newCommentObj = {
       id: Date.now().toString(),
       author: userName,
       text: newComment,

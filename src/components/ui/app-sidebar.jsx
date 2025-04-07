@@ -29,8 +29,8 @@ export function AppSidebar() {
       icon: Building2,
     },
     {
-      title: "Notebooks",
-      href: "/admin/notebooks",
+      title: "Institution notebooks ",
+      href: "/admin/uploaded-notebooks",
       icon: Book,
     },
     {

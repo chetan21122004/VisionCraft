@@ -1,28 +1,12 @@
 "use client"
 
-import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
-import type { Product } from "@/lib/data"
+import { createContext, useContext, useState, useEffect } from "react"
 
-export interface CartItem {
-  product: Product
-  quantity: number
-}
-
-interface CartContextType {
-  items: CartItem[]
-  addToCart: (product: Product, quantity: number) => void
-  removeFromCart: (productId: string) => void
-  updateQuantity: (productId: string, quantity: number) => void
-  clearCart: () => void
-  subtotal: number
-  deliveryFee: number
-  total: number
-}
 
 const CartContext = createContext<CartContextType | undefined>(undefined)
 
-export function CartProvider({ children }: { children: ReactNode }) {
-  const [items, setItems] = useState<CartItem[]>([])
+export function CartProvider({ children }) {
+  const [items, setItems] = useState([])
   const deliveryFee = 499
 
   // Load cart from localStorage on client side
@@ -44,7 +28,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   }, [items])
 
-  const addToCart = (product: Product, quantity: number) => {
+  const addToCart = (product, quantity) => {
     setItems((prevItems) => {
       const existingItem = prevItems.find((item) => item.product.id === product.id)
 
@@ -58,11 +42,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
     })
   }
 
-  const removeFromCart = (productId: string) => {
+  const removeFromCart = (productId) => {
     setItems((prevItems) => prevItems.filter((item) => item.product.id !== productId))
   }
 
-  const updateQuantity = (productId: string, quantity: number) => {
+  const updateQuantity = (productId, quantity) => {
     if (quantity <= 0) {
       removeFromCart(productId)
       return

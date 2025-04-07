@@ -14,7 +14,7 @@ export default function coustomer() {
       <header className="bg-emerald-500 text-white p-4 flex justify-between items-center">
         <h1 className="text-xl font-medium">Nearby Retailers — Find & Buy Notebooks Easily</h1>
         <Button
-          onClick={() => window.location.href = '/coustomer/vcproducts'}
+          onClick={() => window.location.href = '/coustomer/vcproducts/'}
           className="bg-white text-emerald-500 px-4 py-2 rounded-md shadow-md hover:bg-gray-100 transition"
         >
           View Products

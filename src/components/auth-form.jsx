@@ -12,7 +12,7 @@ export default function AuthForm() {
     address: ''
   })
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     
     const response = await fetch('/api/auth/signup', {

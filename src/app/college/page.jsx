@@ -10,7 +10,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     try {
-      const storedData = localStorage.getItem('AuthData')
+      const storedData = localStorage.getItem('AuthCollege')
       if (storedData) {
         const parsedData = JSON.parse(storedData)
         setUserData(parsedData)

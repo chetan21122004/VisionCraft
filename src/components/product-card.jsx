@@ -3,15 +3,11 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
-import type { Product } from "@/lib/data" 
 import { useCart } from "@/components/cart-context"
 import { Button } from "./ui/button"
 
-interface ProductCardProps {
-  product: Product
-}
 
-export function ProductCard({ product }: ProductCardProps) {
+export function ProductCard({ product }) {
   const [quantity, setQuantity] = useState(10)
   const { addToCart } = useCart()
 

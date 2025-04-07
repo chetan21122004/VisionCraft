@@ -1,18 +1,13 @@
 "use client"
 
-import type React from "react"
 
 import { Building2, ShoppingBag, User } from "lucide-react"
 
-export type Role = "college" | "retailers" | "users"
 
-interface RoleSelectorProps {
-  selectedRole: Role
-  onRoleChange: (role: Role) => void
-}
 
-export default function RoleSelector({ selectedRole, onRoleChange }: RoleSelectorProps) {
-  const roles: { id: Role; label: string; icon: React.ReactNode }[] = [
+
+export default function RoleSelector({ selectedRole, onRoleChange }) {
+  const roles = [
     {
       id: "college",
       label: "College",

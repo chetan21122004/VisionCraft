@@ -2,14 +2,11 @@
 
 import { useState } from "react"
 import { MapPin, Phone, MessageSquare, ArrowRight } from "lucide-react"
-import type { Store } from "@/types/store"
 import CommentSection from "./comment-section"
 
-interface StoreCardProps {
-  store: Store
-}
 
-export default function StoreCard({ store }: StoreCardProps) {
+
+export default function StoreCard({ store }) {
   const [showComments, setShowComments] = useState(false)
 
   return (

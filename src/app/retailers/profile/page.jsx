@@ -1,10 +1,22 @@
 "use client"
 
-import { useState } from "react"
-import { Edit, Eye, Lock, MessageCircle, Store } from "lucide-react"
+import { useState, useEffect } from "react"
+import { ArrowLeft, Edit, Eye, Lock, MessageCircle, Store } from "lucide-react"
+import { useRouter } from "next/navigation"
+
+interface RetailerData {
+  id: string;
+  name: string;
+  email: string;
+  contact?: string;
+  address?: string;
+}
 
 export default function RetailerProfilePage() {
+  const [retailerData, setRetailerData] = useState<RetailerData | null>(null)
+  const [loading, setLoading] = useState(true)
   const [lastUpdated, setLastUpdated] = useState("Today at 2:30 PM")
+  const router = useRouter()
 
   // Mock data for the retailer profile
   const storeInfo = {
@@ -41,6 +53,29 @@ export default function RetailerProfilePage() {
     },
   ]
 
+  useEffect(() => {
+    try {
+      const storedData = localStorage.getItem('AuthRetailer')
+      if (storedData) {
+        const parsedData = JSON.parse(storedData)
+        setRetailerData(parsedData)
+        console.log('Retailer Data:', parsedData)
+      }
+    } catch (error) {
+      console.error('Error fetching retailer data:', error)
+    } finally {
+      setLoading(false)
+    }
+  }, [])
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
+
+  if (!retailerData) {
+    return <div>Please login to view your profile</div>
+  }
+
   const handleUpdateStock = () => {
     // In a real app, this would open a modal or navigate to a stock update page
     alert("Update stock functionality would be implemented here")
@@ -60,7 +95,14 @@ export default function RetailerProfilePage() {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex  items-center">
+          <button 
+            onClick={() => window.history.back()} 
+            className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
+          >
+            <ArrowLeft className="h-5 w-5" />
+            <span>Back</span>
+          </button>
           <div className="flex items-center">
             <div className="h-8 w-8 bg-blue-600 rounded-md flex items-center justify-center text-white font-bold">
               LO
@@ -70,6 +112,7 @@ export default function RetailerProfilePage() {
             Update
           </button>
         </div>
+     
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

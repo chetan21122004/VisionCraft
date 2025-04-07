@@ -40,8 +40,22 @@ export default function RegisterPage() {
 
     if (response.ok) {
       // Store the user data in localStorage
-      localStorage.setItem('AuthData', JSON.stringify(responseData.data));
-
+      switch(selectedRole) {
+        case 'college':
+          localStorage.setItem('AuthCollege', JSON.stringify(responseData.data));
+          window.location.href = "/college";
+          break;
+        case 'users':
+          localStorage.setItem('AuthCustomer', JSON.stringify(responseData.data));
+          window.location.href = "/customer";
+          break;
+        case 'retailers':
+          localStorage.setItem('AuthRetailer', JSON.stringify(responseData.data));
+          window.location.href = "/retailers";
+          break;
+        default:
+          console.error('Unknown selectedRole:', selectedRole);
+      }
       // Use router.push for client-side navigation
       if (selectedRole === "college") {
         router.push("/college");

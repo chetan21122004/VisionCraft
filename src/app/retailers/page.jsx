@@ -18,42 +18,28 @@ interface Product {
 }
 
 const products: Product[] = [
-    {
-      id: "small-notebook",
-      name: "Small Notebook",
-      price: 20,
-      description: "100 pages of premium recycled paper, eco-friendly cover",
-      image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300&q=80",
-    },
-    {
-      id: "big-notebook",
-      name: "Big Notebook",
-      price: 30,
-      description: "200 pages of premium recycled paper, durable binding",
-      image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300&q=80",
-    },
-    {
-      id: "thin-notebook",
-      name: "Thin Notebook",
-      price: 15,
-      description: "50 pages of premium recycled paper, lightweight design",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300&q=80",
-    },
-    {
-      id: "premium-repurpose-notebook",
-      name: "Premium Repurpose Notebook",
-      price: 1999,
-      description: "Luxury recycled paper notebook with leather cover, large size",
-      image: "https://images.unsplash.com/photo-1629196916199-60a8521c6f72?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300&q=80",
-    },
-    {
-      id: "slim-repurpose-notebook",
-      name: "Slim Repurpose Notebook",
-      price: 1599,
-      description: "Compact luxury notebook with recycled paper, small size",
-      image: "https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300&q=80",
-    },
-  ]
+  {
+      "id": "5e5610fa-735e-400b-af3c-137700ccd166",
+      "name": "Big",
+      "price": 30,
+      "description": "150+ pgs with A4 size book",
+      "image": "https://m.media-amazon.com/images/I/61oUmsL+mzL._SX522_.jpg"
+  },
+  {
+      "id": "d6fa0c08-d308-42d4-89ba-3698975a05bd",
+      "name": "Small", "price": 20,
+      "description": "around 100pgs and A4 size or 150+ pgs but small size",
+      "image": "https://m.media-amazon.com/images/I/61oUmsL+mzL._SX522_.jpg"
+  },
+  {
+      "id": "f16bee18-15da-465f-8df7-42a4df9d097c",
+      "name": "Thin ",
+      "price": 15,
+      "description": "100 pgs or less than 100pgs, Good for the small assignments,Good for ",
+      "image": "https://m.media-amazon.com/images/I/61oUmsL+mzL._SX522_.jpg"
+  }
+
+]
 
 // Cart context
 interface CartItem {
@@ -174,8 +160,8 @@ function ProductCard({ product }: { product: Product }) {
         <Image
           src={product.image || "/placeholder.svg"}
           alt={product.name}
-          width={200}
-          height={100}
+          width={400}
+          height={300}
           className="w-full h-auto object-cover transition-transform hover:scale-105"
         />
       </div>

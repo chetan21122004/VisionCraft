@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/page.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/page.jsx", "src/lib/utils.js", "src/components/college/upload-notebook-modal.jsx", "src/components/coustomer/comment-section.jsx", "src/components/coustomer/store-card.jsx", "src/components/role-selector.jsx", "src/components/product-card.jsx", "src/components/logo.jsx", "src/components/header.jsx", "src/components/auth-form.jsx", "src/components/cart-context.jsx"],
   "exclude": ["node_modules"]
 }

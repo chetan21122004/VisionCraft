@@ -18,7 +18,25 @@ export default function LoginPage() {
   const [rememberMe, setRememberMe] = useState(false)
   const router = useRouter()
 
-
+// In your login/register success handler
+const handleAuthSuccess = (userData, role) => {
+  switch(role) {
+    case 'college':
+      localStorage.setItem('AuthCollege', JSON.stringify(userData));
+      window.location.href = "/college";
+      break;
+    case 'users':
+      localStorage.setItem('AuthCustomer', JSON.stringify(userData));
+      window.location.href = "/customer";
+      break;
+    case 'retailers':
+      localStorage.setItem('AuthRetailer', JSON.stringify(userData));
+      window.location.href = "/retailers";
+      break;
+    default:
+      console.error('Unknown role:', role);
+  }
+}
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -40,8 +58,23 @@ export default function LoginPage() {
       if (response.ok) {
         const responseData = await response.json()
         console.log(responseData,selectedRole);
-        localStorage.setItem('AuthData', JSON.stringify(responseData.data))
-
+          switch(selectedRole) {
+            case 'college':
+              localStorage.setItem('AuthCollege', JSON.stringify(responseData.data));
+              window.location.href = "/college";
+              break;
+            case 'users':
+              localStorage.setItem('AuthCustomer', JSON.stringify(responseData.data));
+              window.location.href = "/coustomer";
+              break;
+            case 'retailers':
+              localStorage.setItem('AuthRetailer', JSON.stringify(responseData.data));
+              window.location.href = "/retailers";
+              break;
+            default:
+              console.error('Unknown selectedRole:', selectedRole);
+          }
+        
         if (selectedRole === "college") {
           router.push("/college");
         } else if (selectedRole === "users") {
