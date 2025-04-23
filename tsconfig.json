@@ -33,7 +33,7 @@
     "**/*.tsx",
     "next-env.d.ts",
     ".next/types/**/*.ts"
-, "src/components/cart-context.jsx", "src/lib/db.ts", "src/components/college/upload-notebook-modal.jsx", "src/app/college/page.jsx", "src/components/auth-form.jsx"  ],
+, "src/components/cart-context.jsx", "src/lib/db.ts", "src/components/college/upload-notebook-modal.jsx", "src/app/college/page.jsx", "src/components/auth-form.jsx", "src/app/api/collegeRoutes/upload-notebook/route.js"  ],
   "exclude": [
     "node_modules"
   ]
