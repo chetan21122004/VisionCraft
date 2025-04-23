@@ -40,7 +40,7 @@ const products = [
 const CartContext = createContext(undefined)
 
 function CartProvider({ children }) {
-    const [items, setItems] = useState<CartItem[]>([])
+    const [items, setItems] = useState([])
     const deliveryFee = 499
 
     // Load cart from localStorage on client side
