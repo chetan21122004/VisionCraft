@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, createContext, useEffect, type ReactNode } from "react"
+import { useState, createContext, useEffect} from "react"
 import Image from "next/image"
 import { Trash2, ShoppingCart } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -10,15 +10,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useCart } from "@/components/cart-context"
 
 // Product data
-interface Product {
-    id: string
-    name: string
-    price: number
-    description: string
-    image: string
-}
 
-const products: Product[] = [
+const products = [
     {
         "id": "5e5610fa-735e-400b-af3c-137700ccd166",
         "name": "Big",
@@ -42,26 +35,11 @@ const products: Product[] = [
 
 ]
 
-// Cart context
-interface CartItem {
-    product: Product
-    quantity: number
-}
 
-interface CartContextType {
-    items: CartItem[]
-    addToCart: (product: Product, quantity: number) => void
-    removeFromCart: (productId: string) => void
-    updateQuantity: (productId: string, quantity: number) => void
-    clearCart: () => void
-    subtotal: number
-    deliveryFee: number
-    total: number
-}
 
-const CartContext = createContext<CartContextType | undefined>(undefined)
+const CartContext = createContext(undefined)
 
-function CartProvider({ children }: { children: ReactNode }) {
+function CartProvider({ children }) {
     const [items, setItems] = useState<CartItem[]>([])
     const deliveryFee = 499
 
@@ -84,7 +62,7 @@ function CartProvider({ children }: { children: ReactNode }) {
         }
     }, [items])
 
-    const addToCart = (product: Product, quantity: number) => {
+    const addToCart = (product, quantity) => {
         setItems((prevItems) => {
             const existingItem = prevItems.find((item) => item.product.id === product.id)
 
@@ -98,11 +76,11 @@ function CartProvider({ children }: { children: ReactNode }) {
         })
     }
 
-    const removeFromCart = (productId: string) => {
+    const removeFromCart = (productId) => {
         setItems((prevItems) => prevItems.filter((item) => item.product.id !== productId))
     }
 
-    const updateQuantity = (productId: string, quantity: number) => {
+    const updateQuantity = (productId, quantity) => {
         if (quantity <= 0) {
             removeFromCart(productId)
             return
@@ -141,7 +119,7 @@ function CartProvider({ children }: { children: ReactNode }) {
 
 
 // Product Card Component
-function ProductCard({ product }: { product: Product }) {
+function ProductCard({ product }) {
     const [quantity, setQuantity] = useState(10)
     const { addToCart } = useCart()
 
@@ -228,14 +206,6 @@ function ProductsList() {
     )
 }
 
-// Define your interface for customer data
-interface CustomerData {
-    id: string;
-    name: string;
-    email: string;
-    contact?: string;
-    address?: string;
-}
 
 // Cart Component
 function CartPage() {
