@@ -33,7 +33,7 @@
     "**/*.tsx",
     "next-env.d.ts",
     ".next/types/**/*.ts"
-, "src/components/cart-context.jsx", "src/lib/db.ts", "src/components/college/upload-notebook-modal.jsx", "src/app/college/page.jsx", "src/components/auth-form.jsx", "src/app/api/collegeRoutes/upload-notebook/route.js", "src/app/api/coustomerRoutes/getNotebooks/route.js", "src/app/api/auth/register/route.js", "src/app/api/auth/login/route.js", "src/app/api/adminRoutes/getCollegeNotebooks/route.js", "src/app/coustomer/vcproducts/page.jsx", "src/app/retailers/cart/page.jsxsx", "src/components/coustomer/comment-section.jsx"  ],
+, "src/components/cart-context.jsx", "src/lib/db.ts", "src/components/college/upload-notebook-modal.jsx", "src/app/college/page.jsx", "src/components/auth-form.jsx", "src/app/api/collegeRoutes/upload-notebook/route.js", "src/app/api/coustomerRoutes/getNotebooks/route.js", "src/app/api/auth/register/route.js", "src/app/api/auth/login/route.js", "src/app/api/adminRoutes/getCollegeNotebooks/route.js", "src/app/coustomer/vcproducts/page.jsx", "src/app/retailers/cart/page.jsxsx", "src/components/coustomer/comment-section.jsx", "src/components/role-selector.jsx", "src/components/product-card.jsx", "src/components/header.jsx", "src/components/coustomer/store-card.jsx"  ],
   "exclude": [
     "node_modules"
   ]
