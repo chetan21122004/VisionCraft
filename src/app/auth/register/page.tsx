@@ -4,8 +4,11 @@ import type React from "react"
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { User, Mail, Lock, MapPin, Home, Building, Phone } from "lucide-react"
-import RoleSelector, { type Role } from "@/components/role-selector"
+import { User, Mail, Lock, Home, Building, Phone } from "lucide-react"
+import RoleSelector from "@/components/role-selector"
+
+// Define the Role type locally
+type Role = "college" | "retailers" | "users"
 
 export default function RegisterPage() {
   const router = useRouter()
@@ -204,7 +207,7 @@ export default function RegisterPage() {
           type="submit"
           className="w-full rounded-md bg-emerald-500 py-2 text-white hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
         >
-          Sign Up as {selectedRole === "institution" ? "Institution" : "User"}
+          Sign Up as {selectedRole === "college" ? "Institution" : selectedRole === "retailers" ? "Retailer" : "User"}
         </button>
 
         <div className="text-center text-sm">

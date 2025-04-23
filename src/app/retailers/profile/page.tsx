@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import { ArrowLeft, Edit, Eye, Lock, MessageCircle, Store } from "lucide-react"
-import { useRouter } from "next/navigation"
 
 interface RetailerData {
   id: string;
@@ -15,8 +14,7 @@ interface RetailerData {
 export default function RetailerProfilePage() {
   const [retailerData, setRetailerData] = useState<RetailerData | null>(null)
   const [loading, setLoading] = useState(true)
-  const [lastUpdated, setLastUpdated] = useState("Today at 2:30 PM")
-  const router = useRouter()
+  const lastUpdated = "Today at 2:30 PM"
 
   // Mock data for the retailer profile
   const storeInfo = {
@@ -29,7 +27,7 @@ export default function RetailerProfilePage() {
   }
 
   // Mock data for current stock
-  const [stock, setStock] = useState({
+  const [stock] = useState({
     smallNotebooks: 150,
     bigNotebooks: 75,
     thinNotebooks: 200,

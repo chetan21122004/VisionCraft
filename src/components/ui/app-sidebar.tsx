@@ -1,6 +1,5 @@
 "use client"
 
-import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { BarChart3, Building2, Package, ShoppingCart, FileText, Book } from "lucide-react"
 

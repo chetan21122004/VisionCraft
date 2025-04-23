@@ -4,7 +4,7 @@ import AuthLayout from '@/app/auth/layout'
 import { useState } from 'react'
 
 export default function AuthForm() {
-  const [isInstitution, setIsInstitution] = useState(false)
+  const isInstitution = false
   const [formData, setFormData] = useState({
     email: '',
     password: '',

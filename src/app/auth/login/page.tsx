@@ -5,11 +5,11 @@ import type React from "react"
 import { useState } from "react"
 import Link from "next/link"
 import { Mail, Lock } from "lucide-react"
-import RoleSelector, { type Role } from "@/components/role-selector"
-import { redirect } from "next/navigation"
+import RoleSelector from "@/components/role-selector"
 import { useRouter } from "next/navigation"
 
-
+// Define the Role type locally
+type Role = "college" | "retailers" | "users"
 
 export default function LoginPage() {
   const [selectedRole, setSelectedRole] = useState<Role>("college")
@@ -17,26 +17,6 @@ export default function LoginPage() {
   const [password, setPassword] = useState("")
   const [rememberMe, setRememberMe] = useState(false)
   const router = useRouter()
-
-// In your login/register success handler
-const handleAuthSuccess = (userData, role) => {
-  switch(role) {
-    case 'college':
-      localStorage.setItem('AuthCollege', JSON.stringify(userData));
-      window.location.href = "/college";
-      break;
-    case 'users':
-      localStorage.setItem('AuthCustomer', JSON.stringify(userData));
-      window.location.href = "/customer";
-      break;
-    case 'retailers':
-      localStorage.setItem('AuthRetailer', JSON.stringify(userData));
-      window.location.href = "/retailers";
-      break;
-    default:
-      console.error('Unknown role:', role);
-  }
-}
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, createContext, useContext, useEffect, type ReactNode } from "react"
+import { useState, createContext, useEffect, type ReactNode } from "react"
 import Image from "next/image"
 import { Trash2, ShoppingCart } from "lucide-react"
 import { Button } from "@/components/ui/button"

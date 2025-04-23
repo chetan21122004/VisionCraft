@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { useRouter } from "next/navigation"
 import { Trash2 } from "lucide-react"
 import { useCart } from "@/components/cart-context"
 import { Button } from "@/components/ui/button"
@@ -13,7 +12,6 @@ import { Header } from "@/components/header"
 export default function CartPage() {
     const { items, removeFromCart, updateQuantity, subtotal, deliveryFee, total } = useCart()
 
-    const router = useRouter()
 
     const handleConfirmOrder = () => {
         alert("Order placed successfully!")
